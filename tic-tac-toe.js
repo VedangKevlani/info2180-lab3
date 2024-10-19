@@ -27,8 +27,8 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Add hover effect to all squares
-    function addHoverEffect(square) {
+     // Add hover effect to all squares
+     function addHoverEffect(square) {
         square.addEventListener('mouseenter', function() {
             square.classList.add('hover');
         });
@@ -36,6 +36,10 @@ window.addEventListener('DOMContentLoaded', function() {
         square.addEventListener('mouseleave', function() {
             square.classList.remove('hover');
         });
+    }
+
+    function checkWinner(square) {
+        
     }
 
     squares.forEach(function(square) {
