@@ -94,7 +94,7 @@ window.addEventListener('DOMContentLoaded', function() {
             gameActive = true; // Reset game status
             
             const statusDiv = document.getElementById('status');
-            statusDiv.innerHTML = 'Move your mouse over a square and click to play an X or an O.';
+            statusDiv.innerHTML = 'Move your mouse over a square and click to play an X or an O';
             statusDiv.classList.remove('you-won'); // Remove any win classes
         });
     }
