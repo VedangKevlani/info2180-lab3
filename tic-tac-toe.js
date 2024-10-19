@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', function() {
             gameState[index] = currentPlayer;
 
             if (checkWinner()) {
-                updateStatus(`${currentPlayer} is the Winner!`);
+                updateStatus(`Congratulations! ${currentPlayer} is the Winner!`);
                 gameActive = false; // Game has concluded
                 return; // End the game
             }
@@ -65,7 +65,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
         // Check for draw
         if (!gameState.includes(null)) {
-            updateStatus("It's a draw!");
+            updateStatus("Oh no! It's a draw!");
             gameActive = false; // Game has concluded
             return; // No winner found
         }
@@ -74,14 +74,29 @@ window.addEventListener('DOMContentLoaded', function() {
 
     function updateStatus(message) {
         const statusDiv = document.getElementById('status');
-        if(!gameState.includes(null)) {
-            statusDiv.innerHTML = `Oh no! ${message}`;
-            statusDiv.classList.add('you-won'); // Add class for styling
-        }
-        else {
-            statusDiv.innerHTML = `Congratulations! ${message}`;
-            statusDiv.classList.add('you-won'); // Add class for styling
-        }
+        statusDiv.innerHTML =  `${message}`;
+        statusDiv.classList.add('you-won'); // Add class for styling
+    }
+
+    function setupNewGame() {
+        const newGameButton = document.querySelector('.btn'); 
+        
+        newGameButton.addEventListener('click', function() {
+            // Clear the game board
+            squares.forEach(square => {
+                square.textContent = ''; 
+                square.classList.remove('X', 'O', 'hover'); // Remove styling classes
+            });
+
+            // Reset the game state
+            gameState.fill(null);
+            currentPlayer = 'X'; // Reset to starting player
+            gameActive = true; // Reset game status
+            
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = 'Move your mouse over a square and click to play an X or an O.';
+            statusDiv.classList.remove('you-won'); // Remove any win classes
+        });
     }
 
     squares.forEach(function(square) {
@@ -92,7 +107,6 @@ window.addEventListener('DOMContentLoaded', function() {
             onMouseClick(square);
         });
     });
+
+    setupNewGame(); // Set up the new game button once when DOM is loaded
 });
-
-
-
